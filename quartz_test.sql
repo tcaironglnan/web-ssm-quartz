@@ -89,7 +89,7 @@ CREATE TABLE `qrtz_fired_triggers` (
 -- ----------------------------
 -- Records of qrtz_fired_triggers
 -- ----------------------------
-INSERT INTO `qrtz_fired_triggers` VALUES ('dufy_test', 'NON_CLUSTERED1487230171387', 'trigger1', 'group1', 'NON_CLUSTERED', '1487230212028', '1487230214000', '5', 'ACQUIRED', null, null, '0', '0');
+INSERT INTO `qrtz_fired_triggers` VALUES ('ssm-web-quartz', 'NON_CLUSTERED1487230171387', 'trigger1', 'group1', 'NON_CLUSTERED', '1487230212028', '1487230214000', '5', 'ACQUIRED', null, null, '0', '0');
 
 -- ----------------------------
 -- Table structure for qrtz_job_details
@@ -126,7 +126,7 @@ CREATE TABLE `qrtz_locks` (
 -- ----------------------------
 -- Records of qrtz_locks
 -- ----------------------------
-INSERT INTO `qrtz_locks` VALUES ('dufy_test', 'TRIGGER_ACCESS');
+INSERT INTO `qrtz_locks` VALUES ('ssm-web-quartz', 'TRIGGER_ACCESS');
 INSERT INTO `qrtz_locks` VALUES ('quartzScheduler', 'TRIGGER_ACCESS');
 INSERT INTO `qrtz_locks` VALUES ('scheduler', 'TRIGGER_ACCESS');
 
@@ -235,20 +235,3 @@ CREATE TABLE `qrtz_triggers` (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-
--- ----------------------------
--- Table structure for user_t
--- ----------------------------
-DROP TABLE IF EXISTS `user_t`;
-CREATE TABLE `user_t` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(40) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `age` int(4) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of user_t
--- ----------------------------
-INSERT INTO `user_t` VALUES ('1', 'admin', '123456', '24');

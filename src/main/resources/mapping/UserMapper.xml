@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.ssm.dao.user.UserMapper">
+<mapper namespace="com.ssm.dao.UserMapper">
     <!--<resultMap type="com.ssm.model.UserModel" id="userMap">-->
         <!--<result property="userName" column="username"/>-->
         <!--<result property="passWord" column="password"/>-->

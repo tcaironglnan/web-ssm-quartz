@@ -1,6 +1,6 @@
 package com.ssm.service.impl;
 
-import com.ssm.dao.user.UserMapper;
+import com.ssm.dao.UserMapper;
 import com.ssm.model.UserModel;
 import com.ssm.service.UserService;
 import com.ssm.utils.Str;

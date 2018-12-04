@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>blackScreenConvertWs</title>
+    <title>Quartz Test Page</title>
     <script src="${pageContext.request.contextPath}/js/jquery.js" type="application/javascript"></script>
 </head>
 

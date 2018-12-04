@@ -1,4 +1,4 @@
-package com.ssm.dao.user;
+package com.ssm.dao;
 
 import com.ssm.model.UserModel;
 import org.apache.ibatis.annotations.Param;
