@@ -1,2 +1,2 @@
-# web-ssm-quartz
-web版添加定时器
+# web-ssm
+spring+springmvc+mybatis+mongodb+generator+redis整合项目例子
