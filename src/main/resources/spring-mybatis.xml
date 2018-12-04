@@ -35,6 +35,7 @@
 
     <!-- 定时任务配置 start -->
     <bean id="customJobFactory" class="com.ssm.config.quartz.CustomJobFactory"/>
+    <!--<bean name="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" >-->
     <bean name="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" >
         <property name="dataSource" ref ="dataSource" />
         <!-- 可选，QuartzScheduler 启动时更新己存在的Job，这样就不用每次修改targetObject后删除qrtz_job_details表对应记录了 -->
