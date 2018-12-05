@@ -16,14 +16,13 @@
     <!--允许加载/访问静态资源 在SpringMVC3.0之后推荐使用-->
     <mvc:default-servlet-handler/>
 
-    <mvc:interceptors>
-
+    <!--<mvc:interceptors>-->
         <!--拦截普通用户请求路径-->
-        <mvc:interceptor>
-            <mvc:mapping path="/user/*"/>
-            <bean class="com.ssm.interceptor.UserInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/user/*"/>-->
+            <!--<bean class="com.ssm.interceptor.UserInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
