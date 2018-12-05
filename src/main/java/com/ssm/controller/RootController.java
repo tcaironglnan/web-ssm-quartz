@@ -34,11 +34,13 @@ import java.util.Date;
 @PersistJobDataAfterExecution
 public class RootController implements Job {
 
+    //region 变量定义部分
     private static final Logger logger = LoggerFactory.getLogger(RootController.class);
     @Autowired
     private UserService userService;
     @Autowired
     private QuartzService quartzService;
+    //endregion
 
 
     @Override
@@ -48,7 +50,7 @@ public class RootController implements Job {
         System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + " ****************** doing something...");
     }
 
-    //region 临时添加
+    //region 定时器部分
     @RequestMapping("startTask")
     @ResponseBody
     public String task(TaskModel taskModel) {
