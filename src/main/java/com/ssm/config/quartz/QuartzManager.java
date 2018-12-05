@@ -16,7 +16,6 @@ public class QuartzManager {
 
     //region 变量定义部分
     private static final Logger logger = LoggerFactory.getLogger(QuartzManager.class);
-//    private static SchedulerFactory schedulerFactory;
     private static SchedulerFactory schedulerFactory = new StdSchedulerFactory();
     //endregion
 
@@ -200,13 +199,4 @@ public class QuartzManager {
         }
     }
     //endregion
-
-
-    public SchedulerFactory getSchedulerFactory() {
-        return schedulerFactory;
-    }
-
-    public void setSchedulerFactory(SchedulerFactory schedulerFactory) {
-        QuartzManager.schedulerFactory = schedulerFactory;
-    }
 }

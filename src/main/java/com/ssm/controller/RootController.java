@@ -34,11 +34,11 @@ import java.util.Date;
 @PersistJobDataAfterExecution
 public class RootController implements Job {
 
+    private static final Logger logger = LoggerFactory.getLogger(RootController.class);
     @Autowired
     private UserService userService;
     @Autowired
     private QuartzService quartzService;
-    private static final Logger logger = LoggerFactory.getLogger(RootController.class);
 
 
     @Override
@@ -49,12 +49,11 @@ public class RootController implements Job {
     }
 
     //region 临时添加
-
     @RequestMapping("startTask")
     @ResponseBody
     public String task(TaskModel taskModel) {
         try {
-            quartzService.addJob(taskModel.getJobName(), taskModel.getJobGroupName(), taskModel.getTriggerName(), taskModel.getTriggerGroupName(),RootController.class, taskModel.getCron());
+            quartzService.addJob(taskModel.getJobName(), taskModel.getJobGroupName(), taskModel.getTriggerName(), taskModel.getTriggerGroupName(), RootController.class, taskModel.getCron());
         } catch (Exception e) {
             logger.error("startTask error,info is: " + e);
             return "0";
@@ -86,6 +85,40 @@ public class RootController implements Job {
         return "1";
     }
 
+    /**
+     * 暂停指定的任务
+     *
+     * @param taskModel 定时器实体
+     */
+    @RequestMapping("pauseTask")
+    @ResponseBody
+    public String pauseTask(TaskModel taskModel) {
+        try {
+            quartzService.pauseJob(taskModel.getJobName(), taskModel.getJobGroupName());
+        } catch (Exception e) {
+            logger.error("pauseTask error,info is: " + e);
+            return "0";
+        }
+        return "1";
+    }
+
+    /**
+     * 恢复指定的任务
+     *
+     * @param taskModel 定时器实体
+     */
+    @RequestMapping("resumeTask")
+    @ResponseBody
+    public String resumeJob(TaskModel taskModel) {
+        try {
+            quartzService.resumeJob(taskModel.getJobName(), taskModel.getJobGroupName());
+        } catch (Exception e) {
+            logger.error("resumeTask error,info is: " + e);
+            return "0";
+        }
+        return "1";
+    }
+
     @RequestMapping("shutAllTask")
     @ResponseBody
     public String shutAllTask() {
@@ -109,15 +142,11 @@ public class RootController implements Job {
         }
         return "1";
     }
-
     //endregion
 
     @RequestMapping("login")
     public String login() {
 
-//        System.out.println("【系统启动】开始(每1秒输出一次)...");
-//        QuartzManager.addJob("JOB_NAME", "JOB_GROUP_NAME", "TRIGGER_NAME", "TRIGGER_GROUP_NAME", RootController.class, "0/5 * * * * ?");
-//        quartzService.addJob("JOB_NAME", "JOB_GROUP_NAME", "TRIGGER_NAME", "TRIGGER_GROUP_NAME", MyJob.class, "0/5 * * * * ?");
         UserModel admin = userService.findUserByUserName("admin");
         if (admin == null) {
             logger.info("管理员初始化成功");
