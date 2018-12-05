@@ -1,0 +1,10 @@
+{
+  "name": "db",
+  "description": "该包存放的是定时器用在对应数据库的创建表脚本",
+  "version": "1.0.0",
+  "dependencies": {
+    "tables-mysql.sql": "用于定时器用在mysql上需要创建的表指令",
+    "tables_oracle.sql": "用于定时器用在oracle上需要创建的表指令",
+    "tables_postgres.sql": "用于定时器用在postgres上需要创建的表指令"
+  }
+}
