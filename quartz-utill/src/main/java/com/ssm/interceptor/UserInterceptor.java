@@ -37,8 +37,8 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
         if (username == null) {
             request.getRequestDispatcher("/login").forward(request, response);
             return false;
-        } else
-            return true;
+        }
+        return true;
     }
 
     /**

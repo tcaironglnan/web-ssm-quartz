@@ -35,6 +35,7 @@ import java.util.Date;
 public class RootController implements Job {
 
     //region 变量定义部分
+
     private static final Logger logger = LoggerFactory.getLogger(RootController.class);
     @Autowired
     private UserService userService;
@@ -46,11 +47,11 @@ public class RootController implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         UserModel userById = userService.findUserById(1L);
-        System.err.println(userById);
-        System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + " ****************** doing something...");
+        System.out.println("RootController:" + userById + ":" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + " ****************** doing something...");
     }
 
     //region 定时器部分
+
     @RequestMapping("startTask")
     @ResponseBody
     public String startTask(TaskModel taskModel) {
@@ -154,6 +155,11 @@ public class RootController implements Job {
             logger.info("管理员初始化成功");
         }
         return "WEB-INF/jsp/root/task.jsp";
+    }
+
+    @RequestMapping("usertask")
+    public String usertask() {
+        return "root/usertask";
     }
 
     /**
