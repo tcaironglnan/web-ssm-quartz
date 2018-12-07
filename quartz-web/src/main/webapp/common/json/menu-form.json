@@ -1,0 +1,10 @@
+[
+  {"name":"用户查看", "children":
+  [
+    {"id":"base-button", "name":"显示所有用户", "target":"navtab", "url":"/admin/page/userListPage"},
+    {"id":"datagrid-user", "name":"查看已删员工数据", "target":"navtab", "url":"/admin/page/getUserDeletedListPage"}
+  ]},
+  {"name":"综合应用", "children":[
+    {"id":"base-demo-form", "name":"查看系统数据", "target":"navtab", "url":"/operation/operationPage"}
+  ]}
+]

@@ -1,0 +1,10 @@
+[
+  {"name":"数据查询", "children":[
+    {"id":"datagrid-jquery", "name":"查看货物数据", "target":"navtab", "url":"/goodsListPage"},
+    {"id":"datagrid-data", "name":"查看厂家数据", "target":"navtab", "url":"/admin/page/getVenderListPage"}
+  ]},
+  {"name":"已删数据查询", "children":[
+    {"id":"datagrid-jquery", "name":"查看已删货物数据", "target":"navtab", "url":"/goodsDeletedListPage"},
+    {"id":"datagrid-data", "name":"查看已删厂家数据", "target":"navtab", "url":"/admin/page/getVenderDeletedListPage"}
+  ]}
+]

@@ -1,0 +1,5 @@
+[
+  {"name":"操作列表", "children":[
+    {"id":"base-navtab", "name":"查看操作记录", "target":"navtab", "url":"/operation/operationPage"}
+  ]}
+]

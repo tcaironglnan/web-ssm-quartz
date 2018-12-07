@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ssm.dao.UserMapper">
+    <!--<resultMap type="com.ssm.model.UserModel" id="userMap">-->
+        <!--<result property="userName" column="username"/>-->
+        <!--<result property="passWord" column="password"/>-->
+    <!--</resultMap>-->
+
+    <!-- 更新用户头像 -->
+    <update id="updateHeadImageById" parameterType="java.lang.String">
+        update user_model set headImage=#{headImage} where id=#{id}
+    </update>
+
+    <!-- 更新用户信息 -->
+    <update id="updateUser" parameterType="com.ssm.model.UserModel">
+        update user_model set loginDate = #{loginDate} where id=#{id}
+    </update>
+
+    <!--mysql查询一条记录-->
+    <select id="findUserByUserName" parameterType="com.ssm.model.UserModel" resultType="com.ssm.model.UserModel">
+        SELECT * FROM user_model WHERE userName=#{userName}
+    </select>
+
+    <!-- 查询用户信息 -->
+    <select id="findUserById" parameterType="java.lang.Long" resultType="com.ssm.model.UserModel">
+        select * from user_model where id=#{id}
+    </select>
+
+    <!--mysql查询一条记录-->
+    <select id="findUserByUserNameAndPassWord" resultType="com.ssm.model.UserModel">
+        SELECT * FROM user_model WHERE userName=#{userName} AND passWord=#{passWord}
+    </select>
+</mapper>
