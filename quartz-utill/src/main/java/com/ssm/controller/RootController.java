@@ -6,7 +6,6 @@ import com.ssm.model.UserModel;
 import com.ssm.service.UserService;
 import com.ssm.service.impl.MyJob;
 import com.ssm.utils.CaptchaUtil;
-import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.io.OutputStream;
 import java.util.Date;
 
 /**
@@ -183,6 +185,71 @@ public class RootController {
         }
         //登录失败跳回原来的页面
         return "2";
+    }
+
+    @RequestMapping("uploadPage")
+    public String uploadPage() {
+        return "root/camera";
+    }
+
+    @RequestMapping("upload")
+    @ResponseBody
+    public String upload(HttpServletRequest request) {
+
+        String basePath = "upload/";
+        String filePath = request.getSession().getServletContext().getRealPath("/") + basePath;
+//        String filePath = "D:/upload/";
+        String fileName = (new Date()).getTime() + ".png";
+        String imgStr = request.getParameter("image");
+
+        if (null != imgStr) {
+            imgStr = imgStr.substring(imgStr.indexOf(",") + 1);
+        }
+        boolean flag = GenerateImage(imgStr, filePath, fileName);
+        String result = "";
+        if (flag) {
+//            result = filePath + fileName;
+            result = basePath + fileName;
+        }
+        return result;
+    }
+
+    @RequestMapping("delPhoto")
+    @ResponseBody
+    public String delPhoto(String filePath, HttpServletRequest request) {
+
+        String basePath = request.getSession().getServletContext().getRealPath("/");
+        File file = new File(basePath + filePath);
+        if (!file.isFile()) {
+            return "0";
+        }
+
+        boolean delete = file.delete();
+        if (!delete) {
+            return "0";
+        }
+        return "1";
+    }
+
+    private boolean GenerateImage(String imgStr, String filePath, String fileName) {
+        try {
+            if (imgStr == null) {
+                return false;
+            }
+            BASE64Decoder decoder = new BASE64Decoder();
+            byte[] b = decoder.decodeBuffer(imgStr);
+            File file = new File(filePath);
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+            OutputStream out = new FileOutputStream(filePath + fileName);
+            out.write(b);
+            out.flush();
+            out.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     //region 登录验证码生成部分
