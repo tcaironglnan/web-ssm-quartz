@@ -6,6 +6,7 @@ import com.ssm.model.UserModel;
 import com.ssm.service.UserService;
 import com.ssm.service.impl.MyJob;
 import com.ssm.utils.CaptchaUtil;
+import com.ssm.utils.HttpRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,6 +137,18 @@ public class RootController {
         return "1";
     }
     //endregion
+
+    @RequestMapping("weixintest")
+    @ResponseBody
+    public String weixintest(String code) {
+
+        String appSecret = "";
+        String appID = "";
+        String requestUrl = "https://api.weixin.qq.com/sns/jscode2session?appid="+ appID +"&secret="+ appSecret +"&js_code="+ code +"&grant_type=authorization_code";
+        String result = HttpRequest.httpClientGet(requestUrl);
+        System.err.println(result);
+        return result;
+    }
 
     @RequestMapping("login")
     public String login() {
