@@ -1,5 +1,6 @@
 package com.ssm.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ssm.config.quartz.QuartzManager;
 import com.ssm.model.TaskModel;
 import com.ssm.model.UserModel;
@@ -7,6 +8,8 @@ import com.ssm.service.UserService;
 import com.ssm.service.impl.MyJob;
 import com.ssm.utils.CaptchaUtil;
 import com.ssm.utils.HttpRequest;
+import com.ssm.utils.ToolJson;
+import com.ssm.utils.WXUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Job有状态实现类，不允许并发执行
@@ -140,14 +144,17 @@ public class RootController {
 
     @RequestMapping("weixintest")
     @ResponseBody
-    public String weixintest(String code) {
+    public JSONObject weixintest(String data,String vi,String code) {
 
         String appSecret = "";
         String appID = "";
         String requestUrl = "https://api.weixin.qq.com/sns/jscode2session?appid="+ appID +"&secret="+ appSecret +"&js_code="+ code +"&grant_type=authorization_code";
         String result = HttpRequest.httpClientGet(requestUrl);
         System.err.println(result);
-        return result;
+        Map map = ToolJson.jsonToMap(result, Map.class);
+        String session_key = map.get("session_key").toString();
+        String openid = map.get("openid").toString();
+        return WXUtils.decodeCrytedData(data, session_key, vi);
     }
 
     @RequestMapping("login")
