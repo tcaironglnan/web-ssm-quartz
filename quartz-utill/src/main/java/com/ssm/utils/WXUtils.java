@@ -7,6 +7,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.AlgorithmParameters;
 import java.security.Security;
 import java.util.Arrays;
@@ -38,10 +39,11 @@ public class WXUtils {
             SecretKeySpec spec = new SecretKeySpec(keyByte, "AES");
             AlgorithmParameters parameters = AlgorithmParameters.getInstance("AES");
             parameters.init(new IvParameterSpec(ivByte));
-            cipher.init(Cipher.DECRYPT_MODE, spec, parameters);// 初始化
+            // 初始化
+            cipher.init(Cipher.DECRYPT_MODE, spec, parameters);
             byte[] resultByte = cipher.doFinal(dataByte);
             if (null != resultByte && resultByte.length > 0) {
-                String result = new String(resultByte, "UTF-8");
+                String result = new String(resultByte, StandardCharsets.UTF_8);
                 return JSONObject.parseObject(result);
             }
         } catch (Exception e) {
