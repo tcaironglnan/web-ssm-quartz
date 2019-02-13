@@ -150,7 +150,6 @@ public class RootController {
         String appID = "";
         String requestUrl = "https://api.weixin.qq.com/sns/jscode2session?appid="+ appID +"&secret="+ appSecret +"&js_code="+ code +"&grant_type=authorization_code";
         String result = HttpRequest.httpClientGet(requestUrl);
-        System.err.println(result);
         Map map = ToolJson.jsonToMap(result, Map.class);
         String session_key = map.get("session_key").toString();
         String openid = map.get("openid").toString();
